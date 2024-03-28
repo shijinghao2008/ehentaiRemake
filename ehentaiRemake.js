@@ -5,8 +5,8 @@
 // @description  ehentai网页端界面重做
 // @author       Shi
 // @match        https://e-hentai.org/*
-// @updateURL    https://raw.githubusercontent.com/shijinghao2008/ehentaiRemake/master/ehentaiRemake.js?token=GHSAT0AAAAAACPRXZEHEHKAYZ6BMFBLWLAEZQFP5OQ
-// @downloadURL  https://raw.githubusercontent.com/shijinghao2008/ehentaiRemake/master/ehentaiRemake.js?token=GHSAT0AAAAAACPRXZEHEHKAYZ6BMFBLWLAEZQFP5OQ
+// @updateURL    https://raw.githubusercontent.com/shijinghao2008/ehentaiRemake/master/ehentaiRemake.js
+// @downloadURL  https://raw.githubusercontent.com/shijinghao2008/ehentaiRemake/master/ehentaiRemake.js
 // @grant        GM_addStyle
 // ==/UserScript==
 
