@@ -9,26 +9,28 @@
 // @downloadURL  https://raw.githubusercontent.com/shijinghao2008/ehentaiRemake/master/ehentaiRemake.js
 // @grant        GM_addStyle
 // ==/UserScript==
+// FORMERTODO: 先把字放大，把图片盛满整个div，来作为第一版实验品
+// 最后发现在object-fit: contain的基础上设置长款大小就可以，图片会自动调整另外一项
 
 
-function addStyle() {
-    'use strict';
+function insertPage() {
+    const newPage = `
+      <html>
+      <head>  
+        <title>{{title}}</title>
+        <style>
+          /* 自定义样式 */
+        </style>
+      </head>
+      <body>
+        <article>
+          <h1>{{title}}</h1>
+          {{content}}
+        </article>
+      </body>
+      </html>
+    `;
 
-    GM_addStyle(`
-        /* 在这里编写你的 CSS 代码 */
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-        }
-
-        p, li {
-            line-height: 1.6;
-        }
-
-        a {
-            color: #0066cc;
-        }
-    `);
+    const html = newPage;
+    document.documentElement.innerHTML = html;
 }
-
-addStyle();
