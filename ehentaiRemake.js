@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ehentaiRemake
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  ehentai网页端界面重做
 // @author       Shi
 // @match        https://e-hentai.org/*
@@ -34,3 +34,4 @@ function insertPage() {
     const html = newPage;
     document.documentElement.innerHTML = html;
 }
+insertPage();
