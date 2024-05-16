@@ -1,0 +1,120 @@
+/*!* 控制字体颜色 *!*/
+/*.gl1t a{*/
+/*    color: #0066cc;*/
+/*}*/
+/*!* 控制字体大小 *!*/
+/*.gl1t a div{*/
+/*    font-size: 18px;*/
+/*    align-content: center;*/
+/*    margin-left: 1% !important;*/
+/*    margin-right: 1% !important;*/
+/*}*/
+
+/*!* 控制图片外框样式 *!*/
+/*.gl3t {*/
+/*    width: 98% !important;*/
+/*    margin: 0 !important;*/
+/*}*/
+
+/*!* 控制图片样式 *!*/
+/*img {*/
+/*    height: auto !important;*/
+/*    width: 98% !important;*/
+/*    object-fit: contain; !important;*/
+/*}*/
+
+gl4t glname glink
+
+.pagebody{
+    background:#EDEBDF;
+    border:1px solid #000000;
+    min-width:400px;
+    max-width:1600px;
+    margin:10px auto 5px;
+    padding:5px;
+    position:relative;
+    border-radius:9px
+}
+
+
+.glgrid{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:stretch;
+    padding:0 !important;
+    border:1px solid #D9D7CC;
+}
+
+
+.glbubble{
+    min-height:200px;
+    padding-bottom:5px;
+    margin: 10px;
+    min-width:267px;
+    max-width:267px;
+    display:flex;
+    flex-direction:column;
+    border-radius: 20px;
+    border:1px solid #D9D7CC;
+    overflow: hidden;
+}
+
+.star{
+    width:24px;
+    height:24px;
+}
+
+.gltype{
+    cursor: pointer;
+}
+
+/*最大宽度1360px*/
+@media screen and (max-width: 1360px) {
+    .glgrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .glbubble:nth-child(8n+1), .glbubble:nth-child(8n+3), .glbubble:nth-child(8n+6), .glbubble:nth-child(8n+8) {
+        background: #F2F0E4;
+    }
+    .glbubble:nth-child(8n+2), .glbubble:nth-child(8n+4), .glbubble:nth-child(8n+5), .glbubble:nth-child(8n+7) {
+        background: #EDEBDF;
+    }
+}
+/*这部分代码使用@supports查询检查浏览器是否支持CSS Grid布局。如果支持，应用以下样式：*/
+/*.gld类将显示为网格布局，其列由repeat(5, 1fr)定义，意味着创建五列，每列占用可用空间的一个等分（1fr是一种灵活的长度单位）。*/
+/*.glbubble类元素的宽度被设置在250px到400px之间。*/
+
+
+/*最大宽度1090px*/
+@media screen and (max-width: 1090px) {
+    .glgrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .glbubble:nth-child(2n+1) {
+        background: #F2F0E4;
+    }
+    .glbubble:nth-child(2n+2) {
+        background: #EDEBDF;
+    }
+}
+/*当屏幕宽度减少到1360px以下时，.gld的列数调整为4列。*/
+/*.glbubble类元素根据其在列表中的位置（使用:nth-child选择器）有不同的背景色，创造条纹效果。*/
+
+/*最大宽度820px*/
+@media screen and (max-width: 820px) {
+    .glgrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .glbubble:nth-child(4n+1), .glbubble:nth-child(4n+4) {
+        background: #F2F0E4;
+    }
+    .glbubble:nth-child(4n+2), .glbubble:nth-child(4n+3) {
+        background: #EDEBDF;
+    }
+}
+/*当屏幕宽度进一步缩小至820px以下时，列数减少至2列。*/
+/*根据.glbubble元素的位置，使用4个周期的复杂条纹背景。*/
+
+
+
+

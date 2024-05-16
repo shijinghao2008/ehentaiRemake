@@ -1,0 +1,188 @@
+.pagebody{
+    background:#EDEBDF;
+    border:1px solid #000000;
+    min-width:300px;
+    max-width:1800px;
+    margin:10px auto 5px;
+    padding:5px;
+    position:relative;
+    border-radius:9px
+}
+
+.glgrid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.glbox{
+    width: calc(16.666% - 20px); /* Six columns layout */
+    margin: 10px;
+}
+
+.glbubble{
+    padding: 0 0 5px 0;
+    display:flex;
+    flex-direction:column;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);
+}
+
+.glcover {
+    align-items: center;
+    object-fit: contain
+}
+
+.glcover img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain
+}
+
+.glmisc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    padding: 2px 6px 2px 6px;
+}
+
+.right-aligned {
+    display: flex;
+    column-gap: 5px;
+    vertical-align: middle;
+}
+
+.glfavorite{
+    padding: 0;
+    margin: 0;
+    cursor:pointer
+}
+
+.heart{
+    margin: 0;
+    padding: 0;
+    width:20px;
+    height:20px;
+}
+
+.glrating{
+    padding: 0;
+    margin: 0;
+}
+
+.star{
+    margin: 0;
+    padding: 0;
+    width:20px;
+    height:20px;
+}
+
+.glmisc, .glrating, .right-aligned, .glfavorite, .gltype, .glpagecount {
+    height: 20px; /* 统一高度 */
+    line-height: 20px; /* 确保文本垂直居中 */
+}
+
+a.glurl {
+    text-decoration: none; /* 移除下划线 */
+    color: inherit; /* 链接颜色与周围文本一致 */
+}
+
+a.glurl:hover {
+    color:#8F4701
+}
+
+.gltitle{
+    padding: 4px 6px 4px 6px;
+}
+
+.gltype[data-disabled],.cn[data-disabled],.cw[data-disabled]{
+    opacity:0.4
+}
+
+.gltype[data-disabled]:hover,.cn[data-disabled]:hover,.cw[data-disabled]:hover{
+    opacity:0.6
+}
+
+.gltype:not([data-disabled]):hover,.cn:not([data-disabled]):hover,.cw:not([data-disabled]):hover{
+    opacity:0.8
+}
+
+.gltype{
+    user-select:none;
+    display:inline-block;
+    text-align:center;
+    vertical-align:middle;
+    white-space:nowrap;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px 4px;
+    font-size:9pt;
+    border-radius:5px;
+    color:#f1f1f1;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);
+    text-shadow:2px 2px 3px rgba(0,0,0,.3);
+    letter-spacing:1px;
+    font-weight:bold;
+    cursor:pointer
+}
+
+.glpagecount {
+    height: 20px;
+}
+
+.gltags {
+    padding: 2px 4px 2px 4px;
+}
+
+.gltag {
+    float: left;
+    font-weight: bold;
+    padding: 1px 4px;
+    margin: 2px;
+    position: relative;
+    border-radius: 7px;
+    font-size:14px;
+    border: 1px solid #806769;
+    background: #F2EFDF;
+    max-width:250px;
+    white-space:nowrap;
+    text-overflow: ellipsis;   /* 当文本超出元素宽度时，末尾用省略号(...)表示 */
+    overflow: hidden;          /* 隐藏超出元素容器范围的内容 */
+}
+
+/*最大宽度1830px*/
+@media screen and (max-width: 1850px) {
+    .glbox {
+        width: calc(16.666% - 20px); /* Six columns layout */
+    }
+}
+
+/*最大宽度1360px*/
+@media screen and (max-width: 1600px) {
+    .glbox {
+        width: calc(20% - 20px); /* Five columns layout */
+    }
+}
+
+/*最大宽度1360px*/
+@media screen and (max-width: 1360px) {
+    .glbox {
+        width: calc(25% - 20px); /* Four columns layout */
+    }
+}
+
+/*最大宽度1090px*/
+@media screen and (max-width: 1090px) {
+    .glbox {
+        width: calc(33.333% - 20px); /* Three columns layout */
+    }
+}
+
+/*最大宽度700px*/
+@media screen and (max-width: 700px) {
+    .glbox {
+        width: calc(50% - 20px); /* Two columns layout */
+    }
+}
