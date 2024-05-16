@@ -5,6 +5,58 @@
     <title>Title</title>
 </head>
 <body>
+<h1 class="ih">E-Hentai Galleries: The Free Hentai Doujinshi, Manga and Image Gallery System</h1>
+<div id="searchbox" class="idi">
+    <form action="https://e-hentai.org/" method="get" style="margin:0px; padding:0px">
+        <input type="hidden" id="f_cats" name="f_cats" value="657">
+        <table class="itc">
+            <tbody>
+            <tr>
+                <td>
+                    <div id="cat_2" class="cs ct2" onclick="toggle_category(2)">Doujinshi</div>
+                </td>
+                <td>
+                    <div id="cat_4" class="cs ct3" onclick="toggle_category(4)">Manga</div>
+                </td>
+                <td>
+                    <div id="cat_8" class="cs ct4" onclick="toggle_category(8)">Artist CG</div>
+                </td>
+                <td>
+                    <div id="cat_16" class="cs ct5" onclick="toggle_category(16)" data-disabled="1">Game CG</div>
+                </td>
+                <td>
+                    <div id="cat_512" class="cs cta" onclick="toggle_category(512)" data-disabled="1">Western</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="cat_256" class="cs ct9" onclick="toggle_category(256)">Non-H</div>
+                </td>
+                <td>
+                    <div id="cat_32" class="cs ct6" onclick="toggle_category(32)">Image Set</div>
+                </td>
+                <td>
+                    <div id="cat_64" class="cs ct7" onclick="toggle_category(64)">Cosplay</div>
+                </td>
+                <td>
+                    <div id="cat_128" class="cs ct8" onclick="toggle_category(128)" data-disabled="1">Asian Porn</div>
+                </td>
+                <td>
+                    <div id="cat_1" class="cs ct1" onclick="toggle_category(1)" data-disabled="1">Misc</div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <input type="text" id="f_search" name="f_search" placeholder="Search Keywords" size="90" maxlength="200">
+            <input type="submit" value="Search" onclick="search_presubmit()">
+            <input type="button" value="Clear" onclick="top.location.href=&#39;https://e-hentai.org/&#39;; return false">
+        </div>
+        <div>[<a href="https://e-hentai.org/?f_cats=767#" onclick="toggle_advsearch_pane(this); return false">Show Advanced Options</a>] &nbsp; &nbsp;[<a href="https://e-hentai.org/?f_cats=767#" onclick="toggle_filesearch_pane(this); return false">Show File Search</a>]</div>
+        <div id="advdiv" style="display:none"></div>
+    </form>
+</div><div id="fsdiv" class="idi" style="margin-top:10px; display:none"></div>
+
 <div class="gl1t" data-new="1">
     <a href="https://e-hentai.org/g/2871237/1483faf99f/">
         <div class="gl4t glname glink">[Twitter] Welcome to Heaven (@Welcome2H)</div>

@@ -156,6 +156,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100%;
 }
 
 .glbox{
@@ -485,7 +486,7 @@ a.glurl:hover {
         });
 
         grid.style.position = 'relative';
-        grid.style.height = `${Math.max(...columnHeights) / scale}px`;
+        grid.style.height = `${Math.max(...columnHeights)}px`;
     }
 
     window.addEventListener('resize', adjustMasonryLayout);

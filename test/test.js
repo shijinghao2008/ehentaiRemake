@@ -142,10 +142,14 @@
 
     function insertStyle() {
         styleHTML = `
+body {
+    margin: 0;
+    padding-top: 60px; /* 根据导航栏的高度调整 */
+}
+
 .pagebody{
     background:#EDEBDF;
     border:1px solid #000000;
-    min-width:300px;
     max-width:1800px;
     margin:10px auto 5px;
     padding:5px;
@@ -153,14 +157,26 @@
     border-radius:9px;
 }
 
+#navbar {
+    position: fixed;
+    top: -50px; /* 初始时隐藏导航栏 */
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
 .glgrid{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100%;
 }
 
 .glbox{
-    width: 300px; 
+    width: 300px;
     padding: 10px;
     transform-origin: top left;
 }
@@ -379,19 +395,22 @@ a.glurl:hover {
         const newPage = `
         <html>
             <head>  
+                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <title>${document.querySelector("title").textContent}</title>
                 <style>
                     ${styleHTML}
                 </style>
             </head>
             <body>
-                <article>
-                    <div class="pagebody">
-                        <div class="glgrid">
-                            ${galleriesHTML}
-                        </div>
+                <div id="navbar">
+                  <input type="search" placeholder="搜索...">
+                  <button>搜索</button>
+                </div>
+                <div class="pagebody">
+                    <div class="glgrid">
+                        ${galleriesHTML}
                     </div>
-                </article>
+                </div>
             </body>
         </html>
         `;
@@ -405,34 +424,40 @@ a.glurl:hover {
         waitForImages();
     }
 
+    let lastScrollTop = 0; // 用来存储上一次的滚动位置
+
+    function updateNavigationBar() {
+        var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+            // 向下滚动
+            document.getElementById("navbar").style.top = "-50px"; // 调整数值以适应实际高度
+        } else {
+            // 向上滚动
+            document.getElementById("navbar").style.top = "0"; // 显示导航栏
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+    }
+
+
+
+
+    let timeout;
+    function adjustMasonryLayoutThrottled() {
+        clearTimeout(timeout);
+        timeout = setTimeout(adjustMasonryLayout, 100); // 延迟100毫秒执行，合并短时间内的多次调用
+    }
+
+
     function waitForImages() {
         const images = document.querySelectorAll('.glcover img');
-        let loadedCount = 0;
-
         images.forEach(img => {
-            if (img.complete) {
-                loadedCount++;
-            } else {
-                img.addEventListener('load', () => {
-                    loadedCount++;
-                    if (loadedCount === images.length) {
-                        adjustMasonryLayout();
-                    }
-                });
-                img.addEventListener('error', () => {
-                    loadedCount++;
-                    if (loadedCount === images.length) {
-                        adjustMasonryLayout();
-                    }
-                });
-            }
+            img.addEventListener('load', adjustMasonryLayoutThrottled);  // 每次图片加载后调用调整布局函数
+            img.addEventListener('error', adjustMasonryLayoutThrottled); // 图片加载失败也调用调整布局函数
         });
-
-        // 如果所有图片都已加载，则直接调用调整布局
-        if (loadedCount === images.length) {
-            adjustMasonryLayout();
-        }
     }
+
 
     function adjustMasonryLayout() {
         const grid = document.querySelector('.glgrid');
@@ -451,13 +476,19 @@ a.glurl:hover {
         // let columnCount = Math.floor(gridWidth / boxWidth);
         // columnCount = Math.max(minColumns, Math.min(maxColumns, columnCount));
 
-        if (gridWidth>=1700){
+        // 宽度区间          列数     box宽度
+        // 0-600			2		0-300
+        // 600-800			3		200-267
+        // 800-1200			4		200-300
+        // 1200-1500		5		240-300
+        // 1500-1800		6		250-300
+        if (gridWidth>=1500){
             columnCount = 6;
-        }else if (gridWidth >= 1300){
+        }else if (gridWidth >= 1200){
             columnCount = 5;
         }else if (gridWidth >= 800){
             columnCount = 4;
-        }else if (gridWidth >= 450){
+        }else if (gridWidth >= 600){
             columnCount = 3;
         }else{
             columnCount = 2;
@@ -466,11 +497,16 @@ a.glurl:hover {
         // 根据列数计算缩放比例
         const scale = Math.min(1, gridWidth / (columnCount * boxWidth));
 
-        console.log(`gridWidth: ${gridWidth}`);
-        console.log(`boxWidth: ${boxWidth}`);
-        console.log(`columnCount: ${columnCount}`);
-        console.log(gridWidth / (columnCount * boxWidth))
-        console.log(`scale: ${scale}`);
+        // console.log(`gridWidth: ${gridWidth}`);
+        // console.log(`boxWidth: ${boxWidth}`);
+        // console.log(`columnCount: ${columnCount}`);
+        // console.log(gridWidth / (columnCount * boxWidth))
+        // console.log(`scale: ${scale}`);
+        // console.log(`devicePixelRatio: ${window.devicePixelRatio}`);
+        // console.log(`窗口宽度（CSS像素）: ${document.documentElement.clientWidth}`);
+        // console.log(`窗口高度（CSS像素）: ${document.documentElement.clientHeight}`);
+
+
 
         const columnHeights = new Array(columnCount).fill(0);
 
@@ -487,9 +523,10 @@ a.glurl:hover {
         });
 
         grid.style.position = 'relative';
-        grid.style.height = `${Math.max(...columnHeights) / scale}px`;
+        grid.style.height = `${Math.max(...columnHeights)}px`;
     }
 
+    window.addEventListener("scroll", updateNavigationBar, false);
     window.addEventListener('resize', adjustMasonryLayout);
     window.addEventListener('DOMContentLoaded', adjustMasonryLayout);
 
